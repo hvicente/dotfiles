@@ -69,7 +69,9 @@ RUN \
   tmux kill-server
 
 # nvim
-RUN https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+RUN wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
 RUN tar xf nvim-linux64.tar.gz
+RUN mkdir -p $HOME/.local/bin
+RUN ln -s /nvim-linux64/bin/nvim /root/.local/bin/nvim
 
 ENV TZ Europe/Madrid
