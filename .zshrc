@@ -37,7 +37,7 @@ bindkey -e                                      # emacs mode, the default
 
 autoload -U promptinit
 promptinit
-printf "\e[5 q" > $TTY
+#printf "\e[5 q" > $TTY
 
 zcomp_init () {
     # Auto load

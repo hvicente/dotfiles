@@ -1,7 +1,28 @@
 FROM archlinux:latest
 
 RUN pacman -Syu --noconfirm
-RUN pacman -Sy --noconfirm git tmux zsh bottom tar unzip zip gzip wget exa bat broot lua
+RUN pacman -Sy --noconfirm git \
+  tmux \
+  zsh \
+  bottom \
+  unzip \
+  zip \
+  wget \
+  exa \
+  bat \
+  broot \
+  lua \
+  make \
+  gcc \
+  ripgrep \
+  tmux \
+  fzf \
+  nnn \
+  gdb \
+  fd \
+  automake \
+  autoconf \
+  cmake
 
 # to set password -p "$(openssl passwd -1 hvicente)"
 # RUN useradd -rm -d /home/hvicente -s /bin/bash -g root -u 1001 hvicente
@@ -28,5 +49,7 @@ RUN source ~/.zshrc
 RUN zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true '
 
 RUN /root/.volta/bin/volta install node@16
+RUN source ~/.zshrc
+RUN volta install yarn@latest
 
 ENV TZ Europe/Madrid
