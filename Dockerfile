@@ -22,7 +22,9 @@ RUN pacman -Sy --noconfirm git \
   fd \
   automake \
   autoconf \
-  cmake
+  cmake \
+  python \
+  python-pip
 
 # to set password -p "$(openssl passwd -1 hvicente)"
 # RUN useradd -rm -d /home/hvicente -s /bin/bash -g root -u 1001 hvicente
@@ -50,6 +52,18 @@ RUN zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true '
 
 RUN /root/.volta/bin/volta install node@16
 RUN source ~/.zshrc
-RUN volta install yarn@latest
+RUN /root/.volta/bin/volta install yarn@latest
+
+# Tmux
+RUN \
+  git clone --depth=1 https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm && \
+  cp ~/repo/dotfiles/.tmux.conf ~ && \
+  ln -s /root/repo/dotfiles/.tmux/tmuxline ~/.tmux/tmuxline
+RUN \
+  tmux start-server && \
+  tmux new-session -d && \
+  sleep 1 && \
+  ~/.tmux/plugins/tpm/scripts/install_plugins.sh && \
+  tmux kill-server
 
 ENV TZ Europe/Madrid

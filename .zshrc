@@ -214,7 +214,55 @@ zinit ice wait'1' lucid depth=1 \
     pick"sysz"
 zinit light joehillen/sysz
 
+FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
+# {{{fzf
+# $ fzf                 # fuzzy search files
+# Tab/Down/S-Tab/Up     # navigate
+# C-s                   # Select items
+# C-p                   # Toggle preview
+export FZF_DEFAULT_COMMAND='fd . --type=file --hidden'
+export FZF_DEFAULT_OPTS="
+--multi
+--height=50%
+--layout=reverse
+--prompt='❯ '
+--pointer='-'
+--marker='+'
+--ansi
+--tabstop=4
+--color=dark
+--color=hl:2:bold,fg+:4:bold,bg+:-1,hl+:2:bold,info:3:bold,border:8,prompt:2,pointer:5,marker:1,header:6
+--bind=tab:down,btab:up,ctrl-s:toggle,ctrl-p:toggle-preview
+"
 
+# C-f fzf-widgets
+# C-r history search
+# **<Tab> fuzzy matching path
+if [ -d /usr/share/fzf ]; then
+    source /usr/share/fzf/completion.zsh
+    source /usr/share/fzf/key-bindings.zsh
+fi
+bindkey '^F'  fzf-select-widget
+bindkey '^R'  fzf-insert-history
+bindkey -r "^[c"
+bindkey -r "^T"
+# }}}
+# {{{fzf-marks
+# Usage:
+# $ mark        # mark current directory
+# $ fzm         # select marked directories using fzf
+# ^z            # select marked directories using fzf
+# ^d            # delete selected items when in fzf
+FZF_MARKS_FILE="$HOME/.cache/fzf-marks"
+FZF_MARKS_COMMAND="fzf"
+FZF_MARKS_COLOR_RHS="249"
+FZF_MARKS_JUMP="^z"
+# }}}
+# {{{zsh-autosuggestions
+export ZSH_AUTOSUGGEST_USE_ASYNC="true"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
+bindkey '^[z' autosuggest-execute
+# }}}
 # export DISABLE_AUTO_TITLE='true'
 
 #source /home/hvicente/.config/broot/launcher/bash/br
