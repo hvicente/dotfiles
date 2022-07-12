@@ -9,13 +9,16 @@ RUN \
 # ZSH
 RUN \
   chsh -s /usr/bin/zsh && \
-  ln -s /root/repo/dotfiles/.zshrc ~/.zshrc
-RUN curl -sS https://starship.rs/install.sh > starship && \
-  chmod +x starship && \
-  ./starship --yes
+  ln -s /root/repo/dotfiles/.zshrc ~/.zshrc && \
+  ln -s /root/repo/dotfiles/.zsh_alias ~/.zsh_alias
+RUN git clone --depth 1 https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
+# RUN curl -sS https://starship.rs/install.sh > starship && \
+#   chmod +x starship && \
+#   ./starship --yes
 
 SHELL ["/usr/bin/zsh", "-c"]
 RUN curl https://get.volta.sh | bash
 RUN source ~/.zshrc
+RUN zsh -i -c -- 'zinit module build; @zinit-scheduler burst || true '
 
 RUN /root/.volta/bin/volta install node@16
