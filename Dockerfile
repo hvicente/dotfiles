@@ -24,7 +24,9 @@ RUN pacman -Sy --noconfirm git \
   autoconf \
   cmake \
   python \
-  python-pip
+  python-pip \
+  xsel
+#skim #like fzf
 
 # to set password -p "$(openssl passwd -1 hvicente)"
 # RUN useradd -rm -d /home/hvicente -s /bin/bash -g root -u 1001 hvicente
@@ -65,5 +67,9 @@ RUN \
   sleep 1 && \
   ~/.tmux/plugins/tpm/scripts/install_plugins.sh && \
   tmux kill-server
+
+# nvim
+RUN https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+RUN tar xf nvim-linux64.tar.gz
 
 ENV TZ Europe/Madrid

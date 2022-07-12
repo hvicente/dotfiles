@@ -16,6 +16,10 @@ if [ -d "$HOME/.yarn/bin" ] ;
 then export PATH="$HOME/.yarn/bin:$PATH"
 fi
 
+if [ -d "$HOME/repo/dotfiles/scripts" ] ;
+then export PATH="$HOME/repo/dotfiles/scripts:$PATH"
+fi
+
 export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=500000
 export SAVEHIST=$HISTSIZE
