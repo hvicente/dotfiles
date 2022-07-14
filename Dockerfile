@@ -73,5 +73,10 @@ RUN wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64
 RUN tar xf nvim-linux64.tar.gz
 RUN mkdir -p $HOME/.local/bin
 RUN ln -s /nvim-linux64/bin/nvim /root/.local/bin/nvim
+RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+RUN mkdir ~/.config
+RUN ln -s /root/repo/dotfiles/nvim ~/.config/nvim
+
 
 ENV TZ Europe/Madrid
