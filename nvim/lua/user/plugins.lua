@@ -76,19 +76,19 @@ return packer.startup(function(use)
   --use "nvim-telescope/telescope.nvim"
 
   -- Treesitter
-  --use {
-  --  "nvim-treesitter/nvim-treesitter",
-  --  run = ":TSUpdate",
-  --}
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  }
   --use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   -- Git
   --use "lewis6991/gitsigns.nvim"
 
   -- HVB Postman alternative to test
-  use {"NTBBloodbath/rest.nvim", requires={"nvim-lua/plenary.nvim"}}
+  use { "NTBBloodbath/rest.nvim", requires = { "nvim-lua/plenary.nvim" } }
 
-  use {'neoclide/coc.nvim', branch = 'release'}
+  use { 'neoclide/coc.nvim', branch = 'release' }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
