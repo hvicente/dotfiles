@@ -78,10 +78,9 @@ RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 RUN mkdir ~/.config
 RUN ln -s /root/repo/dotfiles/nvim ~/.config/nvim
 RUN \
-  ~/.local/bin/nvim -es --cmd 'call custom#plug#install()' --cmd 'qa' && \
-  DOCKER_INIT=1 ~/.local/bin/nvim --headless +PlugInstall +qall && \
-  DOCKER_INIT=1 ~/.local/bin/nvim --headless +"helptags ALL" +qall
+  root/.local/bin/nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' && \
+  root/.local/bin/nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 RUN \
-  ~/.local/bin/nvim --headless +"TSInstallSync all" +qall
+  root/.local/bin/nvim --headless +"TSInstallSync all" +qall
 
 ENV TZ Europe/Madrid
