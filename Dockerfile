@@ -85,8 +85,8 @@ RUN \
   mkdir -p ~/dev/microsoft && \
   git clone https://github.com/microsoft/vscode-node-debug2.git ~/dev/microsoft/vscode-node-debug2 && \
   cd ~/dev/microsoft/vscode-node-debug2 && \
-  npm install && \
-  NODE_OPTIONS=--no-experimental-fetch npm run build
+  /root/.volta/bin/npm install && \
+  NODE_OPTIONS=--no-experimental-fetch /root/.volta/bin/npm run build
 
 # root/.local/bin/nvim --headless +"TSInstallSync all" +qall
 
