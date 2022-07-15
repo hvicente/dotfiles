@@ -80,7 +80,14 @@ RUN ln -s /root/repo/dotfiles/nvim ~/.config/nvim
 RUN \
   root/.local/bin/nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' && \
   root/.local/bin/nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+# DAP
 RUN \
-  root/.local/bin/nvim --headless +"TSInstallSync all" +qall
+  mkdir -p ~/dev/microsoft && \
+  git clone https://github.com/microsoft/vscode-node-debug2.git ~/dev/microsoft/vscode-node-debug2 && \
+  cd ~/dev/microsoft/vscode-node-debug2 && \
+  npm install && \
+  NODE_OPTIONS=--no-experimental-fetch npm run build
+
+# root/.local/bin/nvim --headless +"TSInstallSync all" +qall
 
 ENV TZ Europe/Madrid
