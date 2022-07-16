@@ -1,0 +1,39 @@
+#!/bin/bash
+
+if [[ -f "/usr/local/bin/nvim" ]] || [[ -f "/usr/bin/nvim" ]]
+then
+  echo "Installed nvim found outside ${HOME}/.local/bin"
+  echo "Remove before proceed"
+  exit 2
+fi
+
+if [ ! -d "$HOME/.local" ]; then
+  mkdir -p "$HOME/.local"
+fi
+
+cd $HOME/.local
+
+if [ -f "${HOME}/.local/nvim-linux64.tar.gz" ]; then
+  rm nvim-linux64.tar.gz
+fi
+wget -P "$HOME/.local/" https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+tar xf "$HOME/.local/nvim-linux64.tar.gz" -C "$HOME/.local/"
+if [ -f "${HOME}/.local/nvim-linux64.tar.gz" ]; then
+  rm "$HOME/.local/nvim-linux64.tar.gz"
+fi
+
+if [ ! -d "$HOME/.local/bin" ]; then
+  mkdir -p $HOME/.local/bin
+fi
+
+# if [ -d "nvim-linux64" ]; then
+#   rm -fr nvim-linux64
+# fi
+
+if [ ! -f "nvim-linux64/bin/nvim" ]; then
+  echo "Couldn't find the nvim executable. Something went wrong"
+  exit 1
+fi
+
+ln -sf "$HOME/.local/nvim-linux64/bin/nvim" "$HOME/.local/bin/nvim"
+

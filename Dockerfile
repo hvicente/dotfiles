@@ -11,6 +11,7 @@ RUN pacman -Sy --noconfirm git \
   exa \
   bat \
   broot \
+  lazygit \
   lua \
   make \
   gcc \
