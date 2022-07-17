@@ -19,5 +19,8 @@
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
-  "Lua.telemetry.enable": false
+  "Lua.telemetry.enable": false,
+  "tsserver.log": "verbose",
+  "javascript.inlayHints": true,
+  "typescript.inlayHints": true
 }
